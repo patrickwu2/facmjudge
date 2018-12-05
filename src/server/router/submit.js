@@ -24,11 +24,7 @@ router.post('/:id', checkKey, checkProblem(), requireKeyOrNotGit, wrap(async (re
 	if (!problem){
         return res.status(500).send(`Problem #${req.params.id} not found.`);
     }
-	if ( user.isAdmin()  || await user.checkQuota(probId) || user.isTA() ){
-	//	console.log("admin or quota sufficient.");
-	}else{
-        return res.status(500).send(`Problem #${req.params.id} quota used up.`);
-	}
+	await user.checkQuota(probId);
 
     const submission = new Submission({
         problem: problem._id,

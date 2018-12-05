@@ -57,7 +57,7 @@ userSchema.methods.checkQuota = async function(pid){
     let res ;
 	let today = new Date(Date.now());
 
-	if (filter_res === undefined || filter_res.length == 0){
+	if (filter_res === undefined || filter_res.length == 0){	// write new information if new submission 
 		res={
 			problem_id: pid,
 			last_submission: today,
@@ -67,17 +67,8 @@ userSchema.methods.checkQuota = async function(pid){
 		filter_res = _.filter(this.submission_limit,_.conforms({ problem_id : id => id==pid }));
 	}
 	res = filter_res[0];
-	if ( String(today).substr(0,15) != String(res.last_submission).substr(0,15)){
-		res.quota = 0;
-		res.last_submission = today;
-	}
-	if (res.quota >= problem.quota ){
-		return false;
-	}else{
-		// res.quota += 1;
-		await this.save();
-		return true;
-	}
+	res.quota += 1;
+	await this.save();
 };
 const User = mongoose.model('User', userSchema);
 export default User;
