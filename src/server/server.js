@@ -52,5 +52,5 @@ if (cluster.isMaster) {
 }
 else{
     logger.info(`Worker ${process.pid} started`);
-    app.listen(config.port, '127.0.0.1', () => logger.info(`Server start @ ${config.port}`));
+    app.listen(config.port, '0.0.0.0', () => logger.info(`Server start @ ${config.port}`));
 }

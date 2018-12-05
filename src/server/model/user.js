@@ -74,7 +74,7 @@ userSchema.methods.checkQuota = async function(pid){
 	if (res.quota >= problem.quota ){
 		return false;
 	}else{
-		res.quota += 1;
+		// res.quota += 1;
 		await this.save();
 		return true;
 	}
