@@ -1,11 +1,15 @@
-# ADA Judge
-https://ada18-judge.csie.org
+# FACM Judge
+NTU CSIE Council Freshmen ACM Cup Judge
 
 # Original Project
 https://github.com/bobogei81123/adajudge  
 https://github.com/tzupengwang/adajudge
+https://github.com/qazwsxedcrfvtg14/dsajudge
 
 # Installation
+
+- Environment : Centos 7
+
 ```
 # install nvm
 # https://github.com/creationix/nvm
@@ -14,7 +18,7 @@ https://github.com/tzupengwang/adajudge
 nvm install v10.10.0
 
 # install mongodb
-sudo apt install mongodb
+sudo yum install mongodb
 
 # install gulp and forever
 npm install -g gulp forever
@@ -24,20 +28,24 @@ npm install
 
 # Init
 gulp init
-# Semantic auto install is bugged
-# So choose extend my settings > automatic manually when prompted
+# 1. Auto install semantic
+# 2. Move semantic to dist
 
 # Change src/server/config.js
-# example: config.example.js
+# 1. example: config.example.js
+# 2. change secret, port, maxWorkers .......
+
 
 # Build
 gulp build
 
 # Install seccomp
-sudo apt install libseccomp-dev libseccomp2 seccomp
+sudo yum install seccomp
 
 # Build and copy isolate
-sudo -H gulp isolate
+mv /usr/bin/ld /usr/bin/_ld
+ln -s /usr/bin/ld.bfd /usr/bin/ld # centos7 strange soft link ......
+sudo -H gulp isolate # make sure to execute it 4 times
 
 # Unzip fonts.tar.gz in dist/static
 tar xvf fonts.tar.gz -C dist/static/
@@ -53,5 +61,15 @@ sudo cp isolate.conf /usr/local/etc/isolate
 ./start.sh
 
 ```
+
+- Debug Tool
+
+```
+# Isolate
+./isolate --cg --box-id 0 --meta /dev/shm/isolate/META/0 --process --full-env --run -- /usr/bin/env ls -al /usr/bin/ld
+
+./isolate --cg --box-id 0 --meta /dev/shm/isolate/META/0 --process --full-env --run -- /usr/bin/env g++ -O2 -static user.c
+```
+
 # Issue
 Kindly submit any issue you found on github.
