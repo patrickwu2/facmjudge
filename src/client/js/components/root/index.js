@@ -10,8 +10,9 @@ const formValidateObj = {
         rules: [
             {
                 type: 'regExp',
-                value: /\w+@\w+/,
-                prompt: `Not a valid email`,
+                //value: /\w+@\w+/,
+                value: /\w+/,
+                prompt: `Not a valid username`,
             },
         ],
     },

@@ -8,28 +8,6 @@
         | {{ hw.name }}
 
     .ui.segment
-      h3.ui.header Your statistic
-      .ui.stackable.three.column.grid
-        .column.center.aligned
-          .ui.statistic
-            .value {{ hw.userPoints | toFixed 0 }}
-              small(style='font-size: 40%; margin-left: 4px;') / {{ hw.totalPoints }}
-            .label Points
-        .column.center.aligned
-          .ui.statistic
-            .value {{ hw.AC }}
-              small(style='font-size: 40%; margin-left: 4px;') / {{ hw.problemNum }}
-            .label Problems fully Accepted
-        .column.center.aligned
-          .ui.statistic
-            .value 
-              img.ui.inline.image( v-if="getRankImage(hw)", :src="getRankImage(hw)" )
-              i.angle.double.down.icon( v-if="!hw.rank" style="font-size: 70%; color: #555555;" )
-              b( :class="[ getRankClass(hw) ]") {{ getRankStr(hw) }}
-              small(style='font-size: 30%; margin-left: 4px;') / {{ hw.totUsers }}
-            .label Rank
-
-    .ui.segment
       h3.ui.header Information
       table.ui.definition.table
         tbody
@@ -51,19 +29,14 @@
           tr
             th ID
             th Problem Name
-            th.collapsing Weight
-            th Your points
         tbody
           tr( v-for="problem of hw.problems" v-link="{name: 'problem', params: {id: problem.problem._id}}",
           :class="{ positive: problem.AC }")
             td {{ problem.problem._id }}
             td {{ problem.problem.name }}
-            td {{ problem.weight }}
-            td {{ problem.userPoints }}
-              small {{ ' ×' + problem.weight }} = {{ problem.weight * problem.userPoints }}
 
     .ui.segment( v-if="user" )
-      a.ui.button.right.labeled.icon.green.button.spaced( v-if="user.isAdmin || user.isTA || hw.showStatistic"
+      a.ui.button.right.labeled.icon.green.button.spaced( v-if="user.isAdmin"
         v-link="{name: 'homework.statistic', params: {id: hw._id}}" )
         | Statistic
         i.area.chart.icon
@@ -79,21 +52,21 @@
 component( v-else )
   .ui.vertical.masthead.center.aligned.segment
     .ui.text.container
-      h1.ui.brown.header#main-header.menu-font
+      h1.ui.green.header#main-header.menu-font
         p
           i.terminal.icon
-          | ADA JUDGE
+          |  FACM Cup
           br
           | 2018
-      h2.ui.brown.header.menu-font Login to begin...
+      h2.ui.green.header.menu-font Login to begin...
 
 component( v-if="user && homeworks.length==0" )
   .ui.vertical.masthead.center.aligned.segment
     .ui.text.container
-      h1.ui.brown.header#main-header.menu-font
+      h1.ui.green.header#main-header.menu-font
         p
           i.terminal.icon
-          | ADA JUDGE
+          | Freshman Cup ACM
           br
           | 2018
-      h2.ui.brown.header.menu-font No homework here...
+      h2.ui.green.header.menu-font No homework here...

@@ -5,9 +5,9 @@
         .ui.grid.two.column.row.divided
           .column.center.aligned
             .ui.statistic
-              .value {{ this.probUtils.getPointsString(submission) }}
-                small(style='font-size: 40%; margin-left: 4px;') / {{submission.problem.testdata.points}}
-              .label Points
+              .value.text
+                | Result
+                br
           .column.center.aligned
             .ui.statistic( :class="{ \
                   green: probUtils.isAC(submission), \
@@ -19,7 +19,6 @@
                 i.hourglass.empty.icon( v-show="!probUtils.isAC(submission) && !probUtils.isNotAC(submission)" )
                 i.checkmark.icon( v-show="probUtils.isAC(submission)" )
                 i.remove.icon( v-show="probUtils.isNotAC(submission)" )
-              .label Result
 
       table.ui.definition.table
         tbody
@@ -43,7 +42,7 @@
       .ui.segment
         pre( style="overflow-x: auto; margin: 10px 0px" )
           code {{submission.compilationLog}}
-            
+ 	          
     component( v-if="showResult" )
       h2.ui.dividing.header Results
 

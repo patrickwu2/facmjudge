@@ -1,10 +1,10 @@
 component
   .ui.grid.computer.only
-    .top-menu.ui.fixed.top.secondary.pointing.brown.menu
+    .top-menu.ui.fixed.top.secondary.pointing.green.menu
       .ui.container
-        div.item.menu-font( style="color: #a5673f !important;" )
+        div.item.menu-font( style="color: #32CD32 !important;" )
           i.terminal.icon
-          | ADA Judge
+          | FACM Judge
         a.item( v-link="{ path: '/', exact: true }" ) Home
         a.item( v-link="'/problems'" ) Problems
         a.item( v-if="user" v-link="'/submissions'" ) Submissions
@@ -19,7 +19,7 @@ component
           a.item( v-if="!user" @click="clickLogin" ) Login
 
   .ui.grid.mobile.only.tablet.only
-    .top-menu.ui.fixed.top.secondary.pointing.brown.menu
+    .top-menu.ui.fixed.top.secondary.pointing.green.menu
       .ui.container
         div.ui.simple.dropdown.item
           i.content.icon
@@ -32,7 +32,7 @@ component
             a.item( v-if="user" v-link="{ name: 'profile' }" ) Profile
             a.item( v-if="user" @click="clickLogout" ) Logout
             a.item( v-if="!user" @click="clickLogin" ) Login
-        div.item.menu-font( style="color: #a5673f !important;" )
+        div.item.menu-font( style="color: #32CD32 !important;" )
           i.terminal.icon
-          | ADA Judge
+          | FACM Judge
         .item| {{(datetime-datetimebase+nowdatetime) | toFormattedTime 'MM/DD HH:mm:ss'}}

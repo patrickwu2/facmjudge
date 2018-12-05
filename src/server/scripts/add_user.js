@@ -5,7 +5,7 @@ import {promisify} from 'bluebird';
 
 (async () => {
 const hashed = await bcrypt.hash('#####', 10);
-const roles = ['admin','student'];
+const roles = ['student'];
 const user = new User({
     email: "#####",
     password: hashed,

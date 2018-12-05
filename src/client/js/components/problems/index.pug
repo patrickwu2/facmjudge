@@ -4,15 +4,11 @@
       tr
         th ID
         th Problem Name
-        th.collapsing Quota
-        th.collapsing Score
     tbody
       tr( v-for="prob of problems" v-link="{ name: 'problem', params: { id: prob._id }}",
         :class="{ disabled: !prob.visible, positive: prob.userRes.AC }" )
         td.force-pointer {{ prob._id }}
         td.force-pointer {{ prob.name }}
-        td.force-pointer.collasping.center.aligned {{ user ? ( getQuota( _.filter(user.submission_limit,_.conforms(checkProbId(prob._id)))[0],prob ) ) : '-' }}
-        td.force-pointer.collasping.center.aligned {{ prob.userRes.points ? prob.userRes.points : '-' }}
       tr( v-if="user && user.isAdmin" )
         td.positive.center.aligned( colspan="4" v-link="{ path: '/admin/newProblem' }" ) 
           i.plus.icon

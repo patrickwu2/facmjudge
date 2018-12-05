@@ -6,7 +6,7 @@
       .ui.right.floated.header(style="margin-bottom: 5px; padding-top: 20px;")
         div.clear-after
           .hack
-          a( v-if="user && (user.isAdmin || user.isTA || problem.showStatistic)"
+          a( v-if="user && (user.isAdmin)"
             v-link="{name: 'problem.statistic', params: {id: problem._id}}" ).ui.right.labeled.icon.green.button.spaced
             i.area.chart.icon
             | Statistic
