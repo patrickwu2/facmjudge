@@ -24,7 +24,7 @@ gulp init
 
 # update g++ version
 echo "update g++ version"
-yum instsall -y libseccomp-devel
+yum instsall -y libseccomp-devel libseccomp-devel.x86_64
 mv /usr/bin/ld /usr/bin/_ld
 ln -s /usr/bin/ld.bfd /usr/bin/ld
 yum install gcc gcc-c++ libcap-devel asciidoc -y
