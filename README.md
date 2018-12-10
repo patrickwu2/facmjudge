@@ -20,7 +20,9 @@ https://github.com/qazwsxedcrfvtg14/dsajudge
 nvm install v10.10.0
 
 # install mongodb
-sudo yum install mongodb
+sudo yum install mongodb-org
+systemctl restart mongod
+systemctl enable mongod
 
 # install gulp and forever
 npm install -g gulp forever
@@ -42,11 +44,12 @@ gulp init
 gulp build
 
 # Install seccomp
-sudo yum install seccomp
+sudo yum install seccomp-devel
 
 # Build and copy isolate
 mv /usr/bin/ld /usr/bin/_ld
 ln -s /usr/bin/ld.bfd /usr/bin/ld # centos7 strange soft link ......
+yum install gcc gcc-c++ libcap-devel asciidoc -y
 sudo -H gulp isolate # make sure to execute it 4 times
 
 # Unzip fonts.tar.gz in dist/static
@@ -56,11 +59,13 @@ tar xvf fonts.tar.gz -C dist/static/
 ln -s ../../node_modules/mathjax/ dist/static/MathJax
 
 # Edit isolate config
-sudo mkdir /usr/local/etc
 sudo cp isolate.conf /usr/local/etc/isolate
 
 # Run server
+## open firewall port
+## change mode => isolate/isolate-check-environment 
 ./start.sh
+forever restart 0
 
 ```
 
