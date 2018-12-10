@@ -25,7 +25,7 @@ gulp init
 # install isolate
 echo "install isolate"
 yum instsall seccomp-devel
-mv /usr/bin/id /usr/bin/_ld
+mv /usr/bin/ld /usr/bin/_ld
 ln -s /usr/bin/ld.bfd /usr/bin/ld
 yum install gcc gcc-c++ libcap-devel asciidoc -y
 gulp isolate
