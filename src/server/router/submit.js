@@ -24,7 +24,7 @@ router.post('/:id', checkKey, checkProblem(), requireKeyOrNotGit, wrap(async (re
 	if (!problem){
         return res.status(500).send(`Problem #${req.params.id} not found.`);
     }
-	await user.checkQuota(probId);
+	// await user.checkQuota(probId);
 
     const submission = new Submission({
         problem: problem._id,

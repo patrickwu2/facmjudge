@@ -22,6 +22,7 @@ const userSchema = Schema({
 	submission_limit: [{
 		problem_id:Number,
 		last_submission:Date,
+		AC: String,
 		quota:Number,
 	}],
 	roles: [String],
@@ -49,7 +50,7 @@ userSchema.methods.isTA = function() {
 
 //const default_quota = 5;
 
-userSchema.methods.checkQuota = async function(pid){
+userSchema.methods.checkQuota = async function(pid, result){
 	const problem=await Problem.findOne({_id:pid});
 	if(!problem)return false;
 	const limit=this.submission_limit;
@@ -61,14 +62,20 @@ userSchema.methods.checkQuota = async function(pid){
 		res={
 			problem_id: pid,
 			last_submission: today,
-			quota : 0 ,
+			AC : result,
+			quota : 1 ,
 		};
 		this.submission_limit.push(res);
-		filter_res = _.filter(this.submission_limit,_.conforms({ problem_id : id => id==pid }));
 	}
-	res = filter_res[0];
-	res.quota += 1;
-	await this.save();
+	else{	// more than one times
+		res = filter_res[0];
+		if (res.AC != "AC"){	// if the user not AC, then update value
+			res.last_submission = today;
+			res.quota += 1;
+			await this.save();		
+		}		
+	}
+
 };
 const User = mongoose.model('User', userSchema);
 export default User;

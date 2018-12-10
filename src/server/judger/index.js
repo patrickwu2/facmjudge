@@ -3,6 +3,7 @@ import Submission from '/model/submission';
 import Result from '/model/result';
 import Homework from '/model/homework';
 import ProblemResult from '/model/problemResult';
+import User from '/model/user';
 import HomeworkResult from '/model/homeworkResult';
 import sleep from 'sleep-promise';
 import _ from 'lodash';
@@ -57,7 +58,9 @@ async function startJudge(sub, workers) {
         sub[x] = result[x];
     });
     logger.info(`judge #${sub._id} finished, result = ${result.result}`);
-    await sub.save();
+    await sub.save();   // save submission result
+    let user = await User.findById(sub.submittedBy);
+    await user.checkQuota(sub.problem, result.result);
     try {
         await updateStatistic(sub);
     } catch (e) {
