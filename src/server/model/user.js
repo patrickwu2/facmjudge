@@ -66,6 +66,7 @@ userSchema.methods.checkQuota = async function(pid, result){
 			quota : 1 ,
 		};
 		this.submission_limit.push(res);
+		await this.save();
 	}
 	else{	// more than one times
 		res = filter_res[0];
