@@ -22,16 +22,22 @@ npm install
 # init gulp
 gulp init
 
-# install isolate
-echo "install isolate"
+# update g++ version
+echo "update g++ version"
 yum instsall -y libseccomp-devel
 mv /usr/bin/ld /usr/bin/_ld
 ln -s /usr/bin/ld.bfd /usr/bin/ld
 yum install gcc gcc-c++ libcap-devel asciidoc -y
-gulp isolate
-gulp isolate
-gulp isolate
-gulp isolate
+yum install glibc-static libstdc++-static -y
+cp centos7-g++ /etc/yum.repos.d/g++.repo
+yum -y update gcc gcc-c++
+
+# install isolate
+echo "install isolate"
+for i in {1..5};
+do
+	gulp isolate
+done
 cp isolate.conf /usr/local/etc/isolate
 chmod 700 isolate/isolate-check-environment
 
@@ -45,7 +51,4 @@ gulp build
 firewall-cmd --zone=public --add-port=3333/tcp --permanent
 firewall-cmd --reload
 bash start.sh
-
-
-
 
