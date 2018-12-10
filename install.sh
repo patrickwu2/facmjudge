@@ -22,17 +22,14 @@ npm install
 # init gulp
 gulp init
 
-# update g++ version
-echo "update g++ version"
+# install isolate
 yum instsall -y libseccomp-devel libseccomp-devel.x86_64
 mv /usr/bin/ld /usr/bin/_ld
 ln -s /usr/bin/ld.bfd /usr/bin/ld
 yum install gcc gcc-c++ libcap-devel asciidoc -y
 yum install glibc-static libstdc++-static -y
-cp centos7-g++ /etc/yum.repos.d/g++.repo
-yum -y update gcc gcc-c++
 
-# install isolate
+
 echo "install isolate"
 for i in {1..5};
 do
@@ -45,6 +42,12 @@ chmod 700 isolate/isolate-check-environment
 echo "mathjax and fonts"
 tar xvf fonts.tar.gz -C dist/static/
 ln -s node_modules/mathjax/ dist/static/MathJax
+
+# update g++ version
+echo "update g++ version"
+cp centos7-g++ /etc/yum.repos.d/g++.repo
+yum -y update gcc gcc-c++
+
 
 # run server
 cp src/server/config.example.js src/server/config.js
