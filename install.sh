@@ -24,7 +24,7 @@ gulp init
 
 # install isolate
 echo "install isolate"
-yum instsall seccomp-devel
+yum instsall -y libseccomp-devel
 mv /usr/bin/ld /usr/bin/_ld
 ln -s /usr/bin/ld.bfd /usr/bin/ld
 yum install gcc gcc-c++ libcap-devel asciidoc -y
@@ -41,6 +41,7 @@ tar xvf fonts.tar.gz -C dist/static/
 ln -s node_modules/mathjax/ dist/static/MathJax
 
 # run server
+gulp build
 firewall-cmd --zone=public --add-port=3333/tcp --permanent
 firewall-cmd --reload
 bash start.sh
