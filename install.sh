@@ -47,6 +47,7 @@ tar xvf fonts.tar.gz -C dist/static/
 ln -s node_modules/mathjax/ dist/static/MathJax
 
 # run server
+cp src/server/config.example.js src/server/config.js
 gulp build
 firewall-cmd --zone=public --add-port=3333/tcp --permanent
 firewall-cmd --reload
