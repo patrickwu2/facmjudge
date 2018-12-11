@@ -9,6 +9,7 @@ const schema = Schema({
         required: true,
         default: 'A Brand New Homework.',
     },
+    begin: Date,
     due: Date,
     visible: {
         type: Boolean,

@@ -9,6 +9,10 @@ const schema = Schema({
         required: true,
         default: 'A Brand New Problem',
     },
+    num: {
+        type: String,
+        default: 'X',
+    }
     visible: {
         type: Boolean,
         required: true,

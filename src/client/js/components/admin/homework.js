@@ -35,6 +35,8 @@ export default Vue.extend({
             this.hw = result.data;
             if (this.hw.due) 
                 this.hw.due = moment(this.hw.due).tz('Asia/Taipei').format('YYYY/MM/DD HH:mm:ss');
+            if (this.hw.begin) 
+                this.hw.begin = moment(this.hw.begin).tz('Asia/Taipei').format('YYYY/MM/DD HH:mm:ss');
         },
         async getProblems() {
             let result;

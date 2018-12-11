@@ -2,10 +2,10 @@
   table.ui.celled.table.selectable.pointer
     thead
       tr
-        th ID
+        th #
         th Problem Name
     tbody
-      tr( v-for="prob of problems" v-link="{ name: 'problem', params: { id: prob._id }}",
+      tr( v-for="prob of problems" v-link="{ name: 'problem', params: { id: prob.num }}",
         :class="{ disabled: !prob.visible, positive: prob.userRes.AC }" )
         td.force-pointer {{ prob._id }}
         td.force-pointer {{ prob.name }}
