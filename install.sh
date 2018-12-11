@@ -19,11 +19,13 @@ npm install -g gulp forever
 # install packages
 npm install 
 
-# init gulp
+# gulp
 gulp init
+cp src/server/config.example.js src/server/config.js
+gulp build
 
 # install isolate
-yum instsall -y libseccomp-devel libseccomp-devel.x86_64
+yum install -y libseccomp-devel libseccomp-devel.x86_64
 mv /usr/bin/ld /usr/bin/_ld
 ln -s /usr/bin/ld.bfd /usr/bin/ld
 yum install gcc gcc-c++ libcap-devel asciidoc -y
@@ -50,8 +52,6 @@ yum -y update gcc gcc-c++
 
 
 # run server
-cp src/server/config.example.js src/server/config.js
-gulp build
 firewall-cmd --zone=public --add-port=3333/tcp --permanent
 firewall-cmd --reload
 bash start.sh

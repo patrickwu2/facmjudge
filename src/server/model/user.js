@@ -53,8 +53,11 @@ userSchema.methods.isTA = function() {
 userSchema.methods.checkQuota = async function(pid, result){
 	const problem=await Problem.findOne({_id:pid});
 	if(!problem)return false;
+	var prob_id = pid._id;
 	const limit=this.submission_limit;
-	let filter_res = _.filter(limit,_.conforms({ problem_id : id => id==pid }));
+	let filter_res = limit.filter(function(item, index, array){
+		return item.problem_id == prob_id;
+	});
     let res ;
 	let today = new Date(Date.now());
 
@@ -73,6 +76,7 @@ userSchema.methods.checkQuota = async function(pid, result){
 		if (res.AC != "AC"){	// if the user not AC, then update value
 			res.last_submission = today;
 			res.quota += 1;
+			res.AC = result;
 			await this.save();		
 		}		
 	}
