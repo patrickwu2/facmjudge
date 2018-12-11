@@ -3,8 +3,32 @@
     .ui.segment( v-if="problem" )
       h2.ui.heading 
         | # {{ problem._id }}: {{ problem.name }}
-
     .ui.segment( v-if="stats" )
+      h3.ui.header Leader Board
+      thead
+        tr
+          th Rank
+          th Team
+          th solved
+          th time
+          th A
+          th B
+          th C
+          th D
+          th E
+          th F
+          th G
+          th H
+          th I
+          th J
+        tbody
+          tr( v-for="sub of (stats.fastest?stats.fastest:[])"
+                v-link="problem.solutionVisible ? {name: 'submission', params: {id: sub._id}} : null" )
+              td.collapsing.center.aligned( :class="{ 'blue-link': problem.solutionVisible }" ) {{ sub._id }}
+              td {{ _.get(sub, 'submittedBy.meta.name', '') }} ({{ _.get(sub, 'submittedBy.meta.id') }})
+              td {{ probUtils.toDisplayTime(sub.runtime) }}
+
+    //.ui.segment( v-if="stats" )
       h3.ui.header Statistic
       .ui.grid.three.column.row
         .column.center.aligned
@@ -20,7 +44,7 @@
             .value {{ stats.hwStats.average | toFixed 1 }}
             .label Average points
 
-    .ui.segment
+    //.ui.segment
       h3.ui.header Points distribution
       div
         canvas#points-chart

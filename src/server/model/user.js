@@ -13,6 +13,7 @@ const userSchema = Schema({
         type: String,
         required: true,
 	},
+	solve : Number,
 	ssh_key: String,
 	git_upload_key: String,
     meta: {
