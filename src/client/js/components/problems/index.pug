@@ -2,12 +2,12 @@
   table.ui.celled.table.selectable.pointer
     thead
       tr
-        th #
+        th ID
         th Problem Name
     tbody
-      tr( v-for="prob of problems" v-link="{ name: 'problem', params: { id: prob.num }}",
+      tr( v-for="prob of problems" v-link="{ name: 'problem', params: { id: prob._id }}",
         :class="{ disabled: !prob.visible, positive: prob.userRes.AC }" )
-        td.force-pointer {{ prob._id }}
+        td.force-pointer {{ prob.num }}
         td.force-pointer {{ prob.name }}
       tr( v-if="user && user.isAdmin" )
         td.positive.center.aligned( colspan="4" v-link="{ path: '/admin/newProblem' }" ) 

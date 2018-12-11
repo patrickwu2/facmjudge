@@ -12,7 +12,7 @@ const schema = Schema({
     num: {
         type: String,
         default: 'X',
-    }
+    },
     visible: {
         type: Boolean,
         required: true,

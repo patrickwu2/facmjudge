@@ -25,11 +25,16 @@ cp src/server/config.example.js src/server/config.js
 gulp build
 
 # install isolate
-yum install -y libseccomp-devel libseccomp-devel.x86_64
+yum install libseccomp-devel -y 
+yum install libseccomp-devel.x86_64 -y
 mv /usr/bin/ld /usr/bin/_ld
 ln -s /usr/bin/ld.bfd /usr/bin/ld
-yum install gcc gcc-c++ libcap-devel asciidoc -y
-yum install glibc-static libstdc++-static -y
+yum install gcc -y
+yum install gcc-c++ -y
+yum install libcap-devel -y
+yum install asciidoc -y
+yum install glibc-static -y
+yum install libstdc++-static -y
 
 
 echo "install isolate"
