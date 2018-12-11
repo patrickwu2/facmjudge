@@ -62,11 +62,15 @@ userSchema.methods.checkQuota = async function(pid, result){
 	let today = new Date(Date.now());
 
 	if (filter_res === undefined || filter_res.length == 0){	// write new information if new submission 
+		var Q = 1;
+		if (result == "AC"){
+			Q = 0;
+		}
 		res={
 			problem_id: pid,
 			last_submission: today,
 			AC : result,
-			quota : 1 ,
+			quota : Q ,
 		};
 		this.submission_limit.push(res);
 		await this.save();
@@ -75,7 +79,9 @@ userSchema.methods.checkQuota = async function(pid, result){
 		res = filter_res[0];
 		if (res.AC != "AC"){	// if the user not AC, then update value
 			res.last_submission = today;
-			res.quota += 1;
+			if (result != "AC"){
+				result.quota += 1;
+			}
 			res.AC = result;
 			await this.save();		
 		}		
