@@ -5,28 +5,29 @@
         | # {{ problem._id }}: {{ problem.name }}
     .ui.segment( v-if="stats" )
       h3.ui.header Leader Board
-      thead
-        tr
-          th Rank
-          th Team
-          th solved
-          th time
-          th A
-          th B
-          th C
-          th D
-          th E
-          th F
-          th G
-          th H
-          th I
-          th J
-        tbody
-          tr( v-for="sub of (stats.fastest?stats.fastest:[])"
-                v-link="problem.solutionVisible ? {name: 'submission', params: {id: sub._id}} : null" )
-              td.collapsing.center.aligned( :class="{ 'blue-link': problem.solutionVisible }" ) {{ sub._id }}
-              td {{ _.get(sub, 'submittedBy.meta.name', '') }} ({{ _.get(sub, 'submittedBy.meta.id') }})
-              td {{ probUtils.toDisplayTime(sub.runtime) }}
+      table.ui.celled.table.selectable( :class="{pointer: problem && problem.solutionVisible}" )
+        thead
+          tr
+            th Rank
+            th Team
+            th Solve
+            th Time
+            th A
+            th B
+            th C
+            th D
+            th E
+            th F
+            th G
+            th H
+            th I
+            th J
+          tbody
+            tr( v-for="sub of (stats)"
+    //              v-link="problem.solutionVisible ? {name: 'submission', params: {id: sub._id}} : null" )
+                td.collapsing.center.aligned( :class="{ 'blue-link': problem.solutionVisible }" ) {{ sub._id }}
+                td {{ _.get(sub, 'submittedBy.meta.name', '') }} ({{ _.get(sub, 'submittedBy.meta.id') }})
+                td {{ probUtils.toDisplayTime(sub.runtime) }}
 
     //.ui.segment( v-if="stats" )
       h3.ui.header Statistic

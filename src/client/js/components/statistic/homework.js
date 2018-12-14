@@ -35,9 +35,9 @@ export default Vue.extend({
     ready() {
         this.id = this.$route.params.id;
         this.fetchStatistic();
-        this.canvas = {
-            points: document.getElementById('points-chart'),
-        };
+        // this.canvas = {
+        //     points: document.getElementById('points-chart'),
+        // };
     },
     methods: {
         async fetchStatistic() {
@@ -48,7 +48,9 @@ export default Vue.extend({
                 console.log(e);
             }
             _.assignIn(this, result);
-            this.drawPointsDistribution();
+            console.log("Mom I'm here");
+            console.log(this.stats);
+            // this.drawPointsDistribution();
         },
         drawPointsDistribution() {
             let {totalPoints} = this.hw;
