@@ -4,8 +4,8 @@ import Homework from '/model/homework';
 import User from '/model/user';
 
 
-export async function getLeaderBoard(flag) {
-    const user = await User.find().sort('solve');
+export async function getUser() {
+    const user = await User.find({roles: ['student']}).sort({solve: -1, _id:1});
     return user;
     // const hw = await Homework.findOne({
     //     _id: homeworkID,
@@ -48,3 +48,7 @@ export async function getLeaderBoard(flag) {
     // return res[0];
 }
 
+export async function getHW() {
+    const hw = await Homework.find();
+    return hw;
+}
