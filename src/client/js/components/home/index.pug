@@ -12,10 +12,10 @@
       table.ui.definition.table
         tbody
           tr
-            td.collapsing Begin Date
+            td.collapsing Begin 
             td {{ hw.begin | toFormattedTime 'YYYY/MM/DD HH:mm:ss' }}
           tr
-            td.collapsing Due Date
+            td.collapsing Due 
             td {{ hw.due | toFormattedTime 'YYYY/MM/DD HH:mm:ss' }}
           tr( v-if="_.has(hw, 'meta.pdfLink')" )
             td.collapsing PDF link
@@ -33,7 +33,7 @@
             th ID
             th Problem Name
         tbody
-          tr( v-for="problem of hw.problems" v-link="{name: 'problem', params: {id: problem.problem._id}}",
+          tr( v-for="problem of hw.problems" v-link="{name: 'problem', params: {num: problem.problem.num}}",
           :class="{ positive: problem.AC }")
             td {{ problem.problem.num }}
             td {{ problem.problem.name }}
