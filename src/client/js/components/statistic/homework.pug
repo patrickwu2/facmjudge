@@ -8,7 +8,6 @@
       table.ui.celled.table.selectable( :class="{pointer: problem && problem.solutionVisible}" )
         thead
           tr
-            th Rank
             th Team
             th Solve
             th Time
@@ -24,27 +23,26 @@
             th J
           tbody
             tr( v-for="user of stats.user" )
-              td QQ
               td {{ user.meta.name }}
               td {{ user.solve }}
               td {{ user.time }}
-              td( v-if"user.submission_limit[1].AC === 'AC'") {{ user.submission_limit[1].quota}} / {{ user.submissopn_limit[1].last_submission}}
+              td( v-if="user.submission_limit[1].AC === 'AC'") {{ user.submission_limit[1].quota}} / {{ user.submission_limit[1].last_submission}}
               td( v-else ) {{ user.submission_limit[1].quota }} / ---
-              td( v-if"user.submission_limit[2].AC === 'AC'") {{ user.submission_limit[2].quota}} / {{ user.submissopn_limit[2].last_submission}}
+              td( v-if="user.submission_limit[2].AC === 'AC'") {{ user.submission_limit[2].quota}} / {{ user.submission_limit[2].last_submission}}
               td( v-else ) {{ user.submission_limit[2].quota }} / ---
-              td( v-if"user.submission_limit[3].AC === 'AC'") {{ user.submission_limit[3].quota}} / {{ user.submissopn_limit[3].last_submission}}
+              td( v-if="user.submission_limit[3].AC === 'AC'") {{ user.submission_limit[3].quota}} / {{ user.submissopn_limit[3].last_submission}}
               td( v-else ) {{ user.submission_limit[3].quota }} / ---
-              td( v-if"user.submission_limit[4].AC === 'AC'") {{ user.submission_limit[4].quota}} / {{ user.submissopn_limit[4].last_submission}}
+              td( v-if="user.submission_limit[4].AC === 'AC'") {{ user.submission_limit[4].quota}} / {{ user.submission_limit[4].last_submission}}
               td( v-else ) {{ user.submission_limit[4].quota }} / ---
-              td( v-if"user.submission_limit[5].AC === 'AC'") {{ user.submission_limit[5].quota}} / {{ user.submissopn_limit[5].last_submission}}
+              td( v-if="user.submission_limit[5].AC === 'AC'") {{ user.submission_limit[5].quota}} / {{ user.submission_limit[5].last_submission}}
               td( v-else ) {{ user.submission_limit[5].quota }} / ---
-              td( v-if"user.submission_limit[6].AC === 'AC'") {{ user.submission_limit[6].quota}} / {{ user.submissopn_limit[6].last_submission}}
+              td( v-if="user.submission_limit[6].AC === 'AC'") {{ user.submission_limit[6].quota}} / {{ user.submission_limit[6].last_submission}}
               td( v-else ) {{ user.submission_limit[6].quota }} / ---
-              td( v-if"user.submission_limit[7].AC === 'AC'") {{ user.submission_limit[7].quota}} / {{ user.submissopn_limit[7].last_submission}}
+              td( v-if="user.submission_limit[7].AC === 'AC'") {{ user.submission_limit[7].quota}} / {{ user.submission_limit[7].last_submission}}
               td( v-else ) {{ user.submission_limit[7].quota }} / ---
-              td( v-if"user.submission_limit[8].AC === 'AC'") {{ user.submission_limit[8].quota}} / {{ user.submissopn_limit[8].last_submission}}
+              td( v-if="user.submission_limit[8].AC === 'AC'") {{ user.submission_limit[8].quota}} / {{ user.submission_limit[8].last_submission}}
               td( v-else ) {{ user.submission_limit[8].quota }} / ---
-              td( v-if"user.submission_limit[9].AC === 'AC'") {{ user.submission_limit[9].quota}} / {{ user.submissopn_limit[9].last_submission}}
+              td( v-if="user.submission_limit[9].AC === 'AC'") {{ user.submission_limit[9].quota}} / {{ user.submission_limit[9].last_submission}}
               td( v-else ) {{ user.submission_limit[9].quota }} / ---
-              td( v-if"user.submission_limit[10].AC === 'AC'") {{ user.submission_limit[10].quota}} / {{ user.submissopn_limit[10].last_submission}}
+              td( v-if="user.submission_limit[10].AC === 'AC'") {{ user.submission_limit[10].quota}} / {{ user.submission_limit[10].last_submission}}
               td( v-else ) {{ user.submission_limit[10].quota }} / ---

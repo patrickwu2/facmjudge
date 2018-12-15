@@ -75,7 +75,8 @@ userSchema.methods.checkQuota = async function(pid, result){
 		if (result != "AC"){	// add quota if not AC
 			res.quota += 1;
 		}
-		else{	// add peanlty time
+		else{	// add peanlty time when AC
+			this.solve += 1;
 			this.time = this.time + diffMins + 20 * res.quota;
 		}
 		await this.save();

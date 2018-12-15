@@ -9,7 +9,7 @@ const roles = ['admin','student'];
 const problem = 11;
 var submission_limit = [];	// push 11 problems
 for (var i = 0; i < problem; i=i+1){
-	res={
+	var res={
 		problem_id: i,
 		last_submission: null,
 		AC : "WA",
