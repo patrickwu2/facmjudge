@@ -5,7 +5,7 @@ import User from '/model/user';
 
 
 export async function getUser() {
-    const user = await User.find({roles: ['student']}).sort({solve: -1, _id:1});
+    const user = await User.find({roles: ['student']}).sort({solve: -1, time: 1, _id:1});	// more solve + less time + less _id
     return user;
     // const hw = await Homework.findOne({
     //     _id: homeworkID,
