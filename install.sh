@@ -45,10 +45,11 @@ done
 cp isolate.conf /usr/local/etc/isolate
 chmod 700 isolate/isolate-check-environment
 
-# mathjax and fonts
-echo "mathjax and fonts"
+# mathjax + fonts + css
+echo "mathjax + fonts + css"
 tar xvf fonts.tar.gz -C dist/static/
-ln -s node_modules/mathjax/ dist/static/MathJax
+ln -s /root/facmjudge/node_modules/mathjax/ dist/static/MathJax
+cp semantic.css dist/static/semantic/semantic.css
 
 # update g++ version
 echo "update g++ version"

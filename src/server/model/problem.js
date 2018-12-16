@@ -49,7 +49,29 @@ const schema = Schema({
     },
     testFiles: [String],
     resource: [String],
+    record: {
+        WHO_AC: {
+            type: String,
+            default: "Admin",
+        }
+        WHEN_AC: {
+            type: Number,
+            default: 100000000000,
+        }
+    }
 });
+
+problemSchema.methods.solved = async function(who, when){
+    if (this.record.WHO_AC === "Admin"){
+        this.record.WHO_AC = who;
+        this.record.WHEN_AC = when;
+    }
+    else if (when < this.record.WHEN_AC){
+        this.record.WHEN_AC = when;
+        this.record.WHO_AC = who;
+    }
+    await this.save();
+}
 
 schema.plugin(autoIncrement.plugin, 'Problem');
 const Problem = mongoose.model('Problem', schema);

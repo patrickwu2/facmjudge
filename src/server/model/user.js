@@ -26,7 +26,11 @@ const userSchema = Schema({
 	submission_limit: [{
 		problem_id:Number,
 		last_submission:Number,
-		AC: String,
+		AC: Number,
+		FAC: {	// first AC
+			type: Number,
+			default: 0,
+		}	
 		quota:Number,
 	}],
 	roles: [String],
@@ -69,7 +73,7 @@ userSchema.methods.checkQuota = async function(pid, result){
 	var diff = Math.abs(today - hw.begin);
 	var diffMins = Math.round(((diff % 86400000) % 3600000) / 60000);	// get mins
 	res = filter_res[0]; // get problem
-	if (res.AC != "AC"){	// update data only when last submission is not AC
+	if (res.AC == 0){	// update data only when last submission is not AC
 		res.last_submission = diffMins;
 		res.AC = result;
 		if (result != "AC"){	// add quota if not AC
@@ -78,6 +82,10 @@ userSchema.methods.checkQuota = async function(pid, result){
 		else{	// add peanlty time when AC
 			this.solve += 1;
 			this.time = this.time + diffMins + 20 * res.quota;
+			await problem.solved(this.email, diffMins);	// who and when
+			if (problem.record.WHO_AC === this.email){	// first AC
+				res.FAC = 1;	
+			}
 		}
 		await this.save();
 	}
