@@ -8,8 +8,9 @@
       table.ui.celled.table.selectable( :class="{pointer: problem && problem.solutionVisible}" )
         thead
           tr
+            th Rank
             th Team
-            th Solve
+            th Solved
             th Time
             th A
             th B
@@ -22,7 +23,8 @@
             th I
             th J
           tbody
-            tr( v-for="user of stats.user" )
+            tr( v-for="user in stats.user" )
+              td {{ $index+1 }}
               td {{ user.meta.name }}
               td {{ user.solve }}
               td {{ user.time }}
