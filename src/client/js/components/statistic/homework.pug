@@ -28,4 +28,4 @@
               td(v-bind:class="{ TD : 1}") {{ user.meta.name }}
               td(v-bind:class="{ TD : 1}") {{ user.solve }}
               td(v-bind:class="{ TD : 1}") {{ user.time }}
-              td( v-for="index in 10" :key="index" v-bind:class="{ TD: 1, fac : (user.submission_limit[index+1].FAC === 1), positive : (user.submission_limit[index+1].AC === 'AC' && user.submission_limit[index+1].FAC !== 1), negative : (user.submission_limit[index+1].AC !== 'AC' && user.submission_limit[index+1].quota !== 0 )}") {{ user.submission_limit[index+1].quota }} / {{ user.submission_limit[index+1].last_submission }}
+              td( v-for="index in 10" :key="index" v-bind:class="{ TD: 1, fac : (user.submission_limit[index+1].FAC === 1), positive : (user.submission_limit[index+1].AC === 'AC' && user.submission_limit[index+1].FAC !== 1), negative : (user.submission_limit[index+1].AC !== 'AC' && user.submission_limit[index+1].quota !== 0 )}") {{ user.submission_limit[index+1].quota }} / {{ gettime(user.submission_limit[index+1]) }}

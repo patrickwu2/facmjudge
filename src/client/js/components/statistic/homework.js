@@ -53,6 +53,15 @@ export default Vue.extend({
             console.log(this.stats);
             // this.drawPointsDistribution();
         },
+        gettime(sub){
+            if (sub.last_submission.length == 0){
+                return "---";
+            }
+            else{
+                var index = sub.submission_result.indexOf("AC");
+                return index;
+            }
+        }
         drawPointsDistribution() {
             let {totalPoints} = this.hw;
             totalPoints += 1e-10;
