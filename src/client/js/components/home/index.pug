@@ -33,9 +33,9 @@
             th ID
             th Problem Name
         tbody
-          tr( v-for="problem of hw.problems" v-link="{name: 'problem', params: {num: problem.problem.num}}",
+          tr( v-for="problem of hw.problems" v-link="{name: 'problem', params: { id: problem.problem._id, num: problem.problem.num}}",
           :class="{ positive: problem.AC }")
-            td {{ problem.problem.num }}
+            td {{ getprobnum(64+problem.problem._id) }}
             td {{ problem.problem.name }}
 
     .ui.segment( v-if="user" )

@@ -3,7 +3,7 @@ import autoIncrement from './autoIncrement';
 
 const Schema = mongoose.Schema;
 
-const schema = Schema({
+const problemSchema = Schema({
     name: {
         type: String,
         required: true,
@@ -11,6 +11,7 @@ const schema = Schema({
     },
     num: {
         type: String,
+        required: true,
         default: 'X',
     },
     visible: {
@@ -53,7 +54,7 @@ const schema = Schema({
         WHO_AC: {
             type: String,
             default: "Admin",
-        }
+        },
         WHEN_AC: {
             type: Number,
             default: 100000000000,
@@ -71,9 +72,9 @@ problemSchema.methods.solved = async function(who, when){
         this.record.WHO_AC = who;
     }
     await this.save();
-}
+};
 
-schema.plugin(autoIncrement.plugin, 'Problem');
-const Problem = mongoose.model('Problem', schema);
+problemSchema.plugin(autoIncrement.plugin, 'Problem');
+const Problem = mongoose.model('Problem', problemSchema);
 export default Problem;
 

@@ -1,6 +1,12 @@
+# Timezone
+echo "Set Timezone to Taiwan"
+echo "TZ='Asia/Taipei'; export TZ" >> ~/.bashrc 
+source ~/.bashrc
+
 # install nvm
 echo "Install nvm"
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+
 # install node
 echo "Install node v10.10.0"
 source ~/.bashrc

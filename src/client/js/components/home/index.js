@@ -101,6 +101,9 @@ export default Vue.extend({
                 }
             });
         },
+        getprobnum(index){
+            return String.fromCharCode(index);
+        },
         getRankStr(hw) {
             const {rank} = hw;
             if (!rank) return '50%';

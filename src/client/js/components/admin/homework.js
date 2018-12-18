@@ -46,7 +46,8 @@ export default Vue.extend({
                 return errToast(e);
             }
             this.probs = result.data;
-
+            console.log("<3");
+            console.log(this.probs);
             await sleep(500);
             $('#prob-select').dropdown();
         },

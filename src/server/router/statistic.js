@@ -43,7 +43,7 @@ router.get('/homework/:id', requireLogin, checkHomework(), wrap(async (req, res)
     // const stats = await LB.getLeaderBoard(req.user.isAdmin() || req.user.isTA());
     
     const result = await Promise.all([
-         LB.getLeaderBoard(req.user.isAdmin() || req.user.isTA()),
+         LB.getUser(req.user.isAdmin() || req.user.isTA()),
          LB.getHW(),
     ]);
     const stats = _.zipObject(['user', 'homework'], result);

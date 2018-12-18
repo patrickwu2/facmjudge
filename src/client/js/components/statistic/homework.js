@@ -2,6 +2,7 @@ import Vue from 'vue';
 import html from './homework.pug';
 import toastr from 'toastr';
 import _ from 'lodash';
+import './homework.css';
 
 const SIGMA = 3;
 function getFuzzed(dt) {
