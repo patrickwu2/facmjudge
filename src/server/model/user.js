@@ -59,11 +59,12 @@ userSchema.methods.isTA = function() {
 //const default_quota = 5;
 
 userSchema.methods.checkQuota = async function(pid, result){
-	if (pid == 0)	return true;	// do not consider problem 0
+	
 	const problem=await Problem.findOne({_id:pid});
 	const hw=await Homework.findOne({_id:0});	// get hw0 (hardcoded)
 	if(!problem)return false;
 	var prob_id = pid._id;
+	if (prob_id == 0)	return true;	// do not consider problem 0
 	const limit=this.submission_limit;
 	let filter_res = limit.filter(function(item, index, array){
 		return item.problem_id == prob_id;
