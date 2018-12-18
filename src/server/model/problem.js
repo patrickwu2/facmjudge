@@ -57,7 +57,7 @@ const problemSchema = Schema({
         },
         WHEN_AC: {
             type: Number,
-            default: 100000000000,
+            default: 1643644800000,
         }
     }
 });
