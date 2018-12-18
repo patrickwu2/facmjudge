@@ -61,7 +61,7 @@ async function mkdir777(dir) {
 
 const GCC = [
     '/usr/bin/env',
-    'gcc',
+    '/usr/bin/gcc',
     '-static',
     '-O2',
     '-std=c11',
@@ -71,7 +71,7 @@ const GCCLink = [
 ];
 const GPP = [
     '/usr/bin/env',
-    'g++',
+    '/usr/bin/g++',
     '-std=c++17',
     '-march=native',
     '-static',
