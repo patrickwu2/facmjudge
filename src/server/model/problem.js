@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import autoIncrement from './autoIncrement';
+import User from '/model/user';
 
 const Schema = mongoose.Schema;
 
@@ -55,19 +56,18 @@ const problemSchema = Schema({
             type: String,
             default: "Admin",
         },
-        WHEN_AC: {
-            type: Number,
-            default: 1643644800000,
-        }
+        WHEN_AC: Date,
     }
 });
 
-problemSchema.methods.solved = async function(who, when){
+problemSchema.methods.solved = async function(who, when, pid){
     if (this.record.WHO_AC === "Admin"){
         this.record.WHO_AC = who;
         this.record.WHEN_AC = when;
     }
-    else if (when < this.record.WHEN_AC){
+    else if (this.record.WHEN_AC - when > 0){   // rejudge case
+        const user = await User.findOne({email:this.record.WHO_AC});
+        await user.replaced(pid);
         this.record.WHEN_AC = when;
         this.record.WHO_AC = who;
     }

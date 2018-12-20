@@ -59,9 +59,13 @@ export default Vue.extend({
             }
             else{
                 var index = sub.submission_result.indexOf("AC");
-                return index;
+                if (index == -1){
+                    return sub.last_submission[sub.last_submission.length-1];
+                }
+                else
+                    return sub.last_submission[index];
             }
-        }
+        },
         drawPointsDistribution() {
             let {totalPoints} = this.hw;
             totalPoints += 1e-10;

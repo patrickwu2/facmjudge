@@ -12,7 +12,8 @@ for (var i = 0; i < problem; i=i+1){
 	var res={
 		problem_id: i,
 		last_submission: [],
-        submission_resule: [],
+        submission_result: [],
+        display_time: 0,
 		AC : "WA",
 		quota : 0,
 	};
