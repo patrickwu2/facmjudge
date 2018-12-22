@@ -60,7 +60,9 @@ async function startJudge(sub, workers) {
     logger.info(`judge #${sub._id} finished, result = ${result.result}`);
     await sub.save();   // save submission result
     let user = await User.findById(sub.submittedBy);
-    await user.checkQuota(sub.problem, result.result, sub.ts);
+    if (result.result !== "CE" || result.result !== "SE"){    // do not consider CE cases
+         await user.checkQuota(sub.problem, result.result, sub.ts);
+    }
     try {
         await updateStatistic(sub);
     } catch (e) {

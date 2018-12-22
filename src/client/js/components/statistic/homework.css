@@ -1,24 +1,77 @@
 .ui.table tr.fac,
 .ui.table td.fac {
-  -webkit-box-shadow: 0px 0px 0px #D7FFEE inset;
-  box-shadow: 0px 0px 0px #D7FFEE inset;
+  -webkit-box-shadow: 0px 0px 0px #C1FFE4 inset;
+  box-shadow: 0px 0px 0px #C1FFE4 inset;
 }
 
 .ui.table tr.fac,
 .ui.table td.fac {
-  background: #D7FFEE !important;
+  background: #C1FFE4 !important;
   color: #2C662D !important;
+}
+
+.ui.table tr.ac,
+.ui.table td.ac {
+  -webkit-box-shadow: 0px 0px 0px #DFFFDF inset;
+  box-shadow: 0px 0px 0px #DFFFDF inset;
+}
+
+.ui.table tr.ac,
+.ui.table td.ac {
+  background: #DFFFDF !important;
+  color: #2C662D !important;
+}
+
+.ui.table tr.wa,
+.ui.table td.wa {
+  -webkit-box-shadow: 0px 0px 0px #FFECEC inset;
+  box-shadow: 0px 0px 0px #FFECEC inset;
+}
+
+.ui.table tr.wa,
+.ui.table td.wa {
+  background: #FFECEC !important;
+  color: #9F3E38 !important;
 }
 
 .ui.celled.table tr th.TD,
 .ui.celled.table tr td.TD {
   border-left: 1px solid rgba(34, 36, 38, 0.1);
   max-width: 80px;
-  height: 45px;
+  height: 40px;
+  padding: 0px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
+.ui.celled.table tr th.R,
+.ui.celled.table tr td.R {
+  border-right: 1px solid black;
+}
+
+.ui.celled.table tr th.L,
+.ui.celled.table tr td.L {
+  border-left: 1px solid black
+}
+
 .ui.table.FIX {
 	table-layout: fixed;
+  text-align: center;
+  font-weight: bold;
+}
+
+.ui.celled.table tr th.FIRST,
+.ui.celled.table tr td.FIRST {
+  background-color: #FFD306;
+}
+
+
+.ui.celled.table tr th.SECOND,
+.ui.celled.table tr td.SECOND {
+  background-color: #D0D0D0;
+}
+
+.ui.celled.table tr th.THIRD,
+.ui.celled.table tr td.THIRD {
+  background-color: #CE5400;
 }

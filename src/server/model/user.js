@@ -77,15 +77,17 @@ userSchema.methods.checkQuota = async function(pid, result, today){
 	
 	res = filter_res[0]; // get problem
 	var Diff_idx = -1;
+	var REJUDGE = 0;
 	for (var j = 0; j < res.last_submission.length; j++){
 		if (res.last_submission[j] - today == 0){
 			Diff_idx = j;
 			break;
 		}
 	}
-
+	logger.info(`Diff_idx = ${Diff_idx}`);
 	if (Diff_idx != -1){	// rejudge case
 		res.submission_result[Diff_idx] = result;
+		REJUDGE = 1;
 	}
 	else{											// new submission		
 		res.last_submission.push(today);
@@ -119,7 +121,8 @@ userSchema.methods.checkQuota = async function(pid, result, today){
 		else{
 			diff = Math.abs(this.submission_limit[i].last_submission[this.submission_limit[i].last_submission.length - 1] - hw.begin);
 			diffMins = Math.round(((diff % 86400000) % 3600000) / 60000);
-			this.submission_limit[i].display_time = diffMins;
+			if (!isNaN(diffMins))
+				this.submission_limit[i].display_time = diffMins;
 			// logger.info(`>> len = ${this.submission_limit[i].last_submission.length}`);
 			this.submission_limit[i].quota = this.submission_limit[i].last_submission.length;
 		}
@@ -127,19 +130,20 @@ userSchema.methods.checkQuota = async function(pid, result, today){
 	this.time = time;
 	this.solve = solve;
 	
-	if (result === "AC"){	// check FAC
+	if (result === "AC"){	// maybe FAC
 		await problem.solved(this.email, today, prob_id);
-		if (problem.record.WHO_AC === this.email){
-			this.submission_limit[prob_id].FAC = 1;
-		}
 	}
+
+	if (REJUDGE && result !== "AC"){	// maybe not FAC
+		await problem.checkFAC(this.email, today, prob_id);
+	}
+	if (problem.record.WHO_AC === this.email){
+		this.submission_limit[prob_id].FAC = 1;
+	}	
 	await this.save();
 
 };
-userSchema.methods.checkQuota = async function(pid){
-	this.submission_limit[pid].FAC = 0;
-	await this.save();
-};
+
 const User = mongoose.model('User', userSchema);
 export default User;
 

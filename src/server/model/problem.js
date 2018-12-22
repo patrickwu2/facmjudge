@@ -54,22 +54,27 @@ const problemSchema = Schema({
     record: {
         WHO_AC: {
             type: String,
-            default: "Admin",
+            default: "council-admin",
         },
         WHEN_AC: Date,
     }
 });
 
 problemSchema.methods.solved = async function(who, when, pid){
-    if (this.record.WHO_AC === "Admin"){
+    if (this.record.WHO_AC === "council-admin"){
         this.record.WHO_AC = who;
         this.record.WHEN_AC = when;
     }
     else if (this.record.WHEN_AC - when > 0){   // rejudge case
-        const user = await User.findOne({email:this.record.WHO_AC});
-        await user.replaced(pid);
         this.record.WHEN_AC = when;
         this.record.WHO_AC = who;
+    }
+    await this.save();
+};
+
+problemSchema.methods.checkFAC = async function(who, when, pid){
+    if (this.record.WHO_AC == who && this.record.WHEN_AC - when == 0){  // rejudge to not AC
+        this.WHO_AC = "council-admin";
     }
     await this.save();
 };
