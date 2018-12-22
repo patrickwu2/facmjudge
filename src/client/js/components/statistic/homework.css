@@ -62,16 +62,16 @@
 
 .ui.celled.table tr th.FIRST,
 .ui.celled.table tr td.FIRST {
-  background-color: #FFD306;
+  background-color: gold;
 }
 
 
 .ui.celled.table tr th.SECOND,
 .ui.celled.table tr td.SECOND {
-  background-color: #D0D0D0;
+  background-color: silver;
 }
 
 .ui.celled.table tr th.THIRD,
 .ui.celled.table tr td.THIRD {
-  background-color: #CE5400;
+  background-color: #CD7F32;
 }
