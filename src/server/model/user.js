@@ -113,14 +113,14 @@ userSchema.methods.checkQuota = async function(pid, result, today){
 		if (idx > -1){	// have solved
 			solve += 1;
 			diff = Math.abs(this.submission_limit[i].last_submission[idx] - hw.begin);
-			diffMins = Math.round(((diff % 86400000) % 3600000) / 60000);
+			diffMins = Math.round(diff / 60000);
 			this.submission_limit[i].quota = idx;
 			this.submission_limit[i].display_time = diffMins;
 			time = time + diffMins + this.submission_limit[i].quota * 20;
 		}
 		else{
 			diff = Math.abs(this.submission_limit[i].last_submission[this.submission_limit[i].last_submission.length - 1] - hw.begin);
-			diffMins = Math.round(((diff % 86400000) % 3600000) / 60000);
+			diffMins = Math.round(diff / 60000);
 			if (!isNaN(diffMins))
 				this.submission_limit[i].display_time = diffMins;
 			// logger.info(`>> len = ${this.submission_limit[i].last_submission.length}`);
